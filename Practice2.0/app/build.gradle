@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin:'kotlin-kapt'
+
+
+android {
+
+    kotlinOptions{
+        jvmTarget='1.8'
+    }
+
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.example.practiceapp"
+        minSdkVersion 14
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.0.0'
+
+    //AndroidTesting
+    def androidxTestRunnerVersion='1.1.0'
+    def androidxTestJunitVersion='1.0.0'
+    def androidxTestEspressoIntentsVersion='3.1.0'
+    def androidxTestEspressoCoreVersion="3.1.0"
+    def androidxTestTruthVersion='1.0.0'
+    def androidxRoboelectricVersion='4.0'
+    def fragment_version='1.2.0'
+    def instantTaskExecutor='1.1.1'
+    def room_version="2.2.3"
+
+
+//AndroidTesting
+    androidTestImplementation"androidx.test:runner:${androidxTestRunnerVersion}"
+    androidTestImplementation"androidx.test.ext:junit:${androidxTestJunitVersion}"
+    androidTestImplementation"androidx.test.espresso:espresso-intents:${androidxTestEspressoIntentsVersion}"
+    androidTestImplementation"androidx.test.espresso:espresso-core:${androidxTestEspressoCoreVersion}"
+    androidTestImplementation"androidx.test.ext:truth:${androidxTestTruthVersion}"
+    debugImplementation"androidx.fragment:fragment-testing:$fragment_version"//use'debugImplementationbecauseofwayfragmentscenarioisimplemented***Don'tallowaconflictofimplementation!
+    androidTestImplementation"android.arch.core:core-testing:${instantTaskExecutor}"//Junitruletoforceallasynchronouscallstoberunsynchronously-usefulforlivedatatesting
+    androidTestImplementation"androidx.test:core-ktx:1.1.0"
+
+
+//Testing
+    testImplementation"androidx.test:runner:${androidxTestRunnerVersion}"
+    testImplementation"androidx.test.ext:junit:${androidxTestJunitVersion}"
+    testImplementation"androidx.test.espresso:espresso-intents:${androidxTestEspressoIntentsVersion}"
+    testImplementation"androidx.test.espresso:espresso-core:${androidxTestEspressoCoreVersion}"
+    testImplementation"androidx.test.ext:truth:${androidxTestTruthVersion}"
+    testImplementation"org.robolectric:robolectric:${androidxRoboelectricVersion}"
+    testImplementation"android.arch.core:core-testing:${instantTaskExecutor}"//Junitruletoforceallasynchronouscallstoberunsynchronously-usefulforlivedatatesting
+    testImplementation"androidx.test:core-ktx:1.1.0"
+    testImplementation"androidx.room:room-testing:$room_version"
+
+}
